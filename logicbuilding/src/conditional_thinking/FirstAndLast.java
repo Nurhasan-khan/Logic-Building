@@ -13,7 +13,7 @@ public class FirstAndLast {
                 continue;
         }
     }
-    private static boolean firstLastIsEqual(int number){1
+    private static boolean firstLastIsEqual(int number){
         return number/1000 == (number%1000)%100%10;
     }
 }
