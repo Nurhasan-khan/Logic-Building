@@ -193,10 +193,129 @@ public class Patterns {
             System.out.println();
         }
     }
+    static void pattern17(int n){
+        for (char i = 'A'; i<='A'+n-1; i++){
+            for(int j = 'A'; j<=i; j++){
+                System.out.print(i+" ");
+            }
+            System.out.println();
+        }
+    }
+    static void pattern18(int n){
+        for (int i = 1; i<=n; i++){
+            for(int spaces = 1; spaces<=n-i; spaces++){
+                System.out.print(" ");
+            }
+            char alpha = 'A';
+            int breakPoint = (2*i-1)/2;
+            for (int j = 1; j<=(2*i-1); j++){
+                System.out.print(alpha);
+                if (j<=breakPoint) alpha++;
+                else alpha--;
+            }
+            for(int spaces = 1; spaces<=n-i; spaces++){
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+    static void pattern19(int n){
+        for (int i = 1; i<=n; i++){
+            char ch = (char) ('A'+(n-i));
+            for(int j = 1; j<=i; j++){
+                System.out.print(ch+" ");
+                ch++;
+            }
+            System.out.println();
+        }
+    }
+    static void pattern20(int n){
+        for (int i = 1; i<=n; i++){
+            for (int j = 1; j<=n-i+1; j++){
+                System.out.print("*");
+            }
+            for (int spaces = 1; spaces<=(2*i-2); spaces++){
+                System.out.print(" ");
+            }
+            for (int stars = 1; stars<=n-i+1; stars++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for(int i = 1; i<=n; i++){
+            for(int stars = 1; stars<=i; stars++){
+                System.out.print("*");
+            }
+            for(int spaces = 1; spaces <= 2*n-(2*i); spaces++) {
+                System.out.print(" ");
+            }
+            for (int star = 1; star<=i; star++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+    static void pattern21(int n){
+        for (int i = 1; i<=2*n-1; i++){
+            int totalCols = i>(2*n-i) ? 2*n-i : i;
+            int totalSpaces = i>(2*n-i) ? 2*i-(2*n) : 2*n-(2*i);
+            for (int stars = 1; stars<=totalCols; stars++){
+                System.out.print("*");
+            }
+            for (int spaces = 1; spaces<=totalSpaces; spaces++){
+                System.out.print(" ");
+            }
+            for (int stars = 1; stars<=totalCols; stars++ ){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+    static void pattern22(int n){
+        for (int i = 1; i<=n; i++){
+            for (int j = 1; j<=n; j++){
+                if(j==1 || j== n || i ==1 || i == n)
+                   System.out.print("*");
+                else
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+    static void pattern23(int n){
+        for (int i = 1; i<=2*n-1; i++){
+            for (int j = 1; j<=2*n-1; j++){
+                int top = i-1;
+                int left = j-1;
+                int right = (2*n-1)  - j;
+                int down = (2*n-1)  - i;
+                System.out.print(n - Math.min(
+                         Math.min(top,down)
+                        ,Math.min(left,right)
+                ));
+            }
+            System.out.println();
+        }
+    }
+    static void pattern24(int n){
+        for (int i = 1; i<=n; i++){
+            for (int spaces = 1; spaces<=n-i; spaces++){
+                System.out.print(" ");
+            }
+            for (int stars = 1; stars<=i; stars++){
+                System.out.print("*");
+            }
+
+            for (int spaces = 1; spaces<=n-i; spaces++){
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
 
 
     public static void main(String[] args) {
-        pattern16(5);
+        pattern24(5);
 
     }
 }
