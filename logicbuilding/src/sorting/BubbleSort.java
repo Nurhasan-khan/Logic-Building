@@ -3,7 +3,7 @@ package sorting;
 import java.util.Arrays;
 import java.util.Random;
 
-public class SelectionSort {
+public class BubbleSort {
     public static void main(String[] args) {
         System.out.println("Enter the Size of: ");
         int n = new java.util.Scanner(System.in).nextInt();
@@ -12,25 +12,25 @@ public class SelectionSort {
         System.out.println("Array Before Sorting");
         for (int a : list)
             System.out.print(a+",");
-        selectionSort(list,n);
-        System.out.println("\n After Swaps: ");
+        bubbleSort(list,n);
+        System.out.println();
         for (int a : list)
             System.out.print(a+",");
-
     }
-    public static void selectionSort(int []a,int n){
-        int minIndex;
-        for (int i = 0; i<n-1; i++) {
-            minIndex = i;
-            for (int j = i+1; j<n; j++){
-                if (a[j] < a[minIndex])
-                    minIndex = j;
+    static void bubbleSort(int []a,int n){
+        boolean noSwaps = true;
+        int temp;
+        for (int i = n-1; i>=1; i--){
+            for (int j = 0 ; j<=i-1; j++){
+                if (a[j] > a[j+1]){
+                    temp = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = temp;
+                    noSwaps = false;
+                }
+                if (noSwaps) break;
             }
-            int temp = a[i];
-            a[i] = a[minIndex];
-            a[minIndex] = temp;
         }
-
     }
     static void input(int []arr, int n){
         Random ran = new Random();
@@ -38,6 +38,4 @@ public class SelectionSort {
             arr[i] = ran.nextInt(10000);
         }
     }
-
-
 }
