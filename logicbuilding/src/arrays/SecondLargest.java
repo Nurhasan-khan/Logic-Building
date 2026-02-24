@@ -25,14 +25,15 @@ public class SecondLargest {
         System.out.println("\nSecond Largest: "+getSecondMax(arr,n));
     }
     static int getSecondMax(int []arr, int n){
-       int large = Integer.MIN_VALUE;
-       for (int i = 0; i<n; i++){
-           large = Math.max(large,arr[i]);
-       }
-       int secondLarge = -1;
+       int large = arr[0];
+       int secondLarge = Integer.MIN_VALUE;
        for(int i = 0; i<n; i++){
-           if (arr[i] > secondLarge && arr[i] != large)
+           if (arr[i] > large){
+               secondLarge = large;
+               large = arr[i];
+           } else if (arr[i] > secondLarge && arr[i] != large) {
                secondLarge = arr[i];
+           }
        }
        return secondLarge;
     }
