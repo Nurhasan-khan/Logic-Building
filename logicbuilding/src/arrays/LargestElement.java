@@ -13,7 +13,7 @@ public class LargestElement {
         input(arr,n);
         for(int i = 0; i<n; i++)
             System.out.print(arr[i]+",");
-        System.out.println("\nLargest Element: "+getMax(arr,n));
+        System.out.println("\nLargest Element: "+max(arr,0,arr.length-1));
 //        Arrays.sort(arr); // Quick Sort ~ nlogn
 //        System.out.println("Largest Element: "+arr[n-1]);
     }
@@ -24,6 +24,14 @@ public class LargestElement {
                 max = arr[i];
         }
         return max;
+    }
+    static int max(int []arr,int low , int high){
+        if (low == high)
+            return arr[low];
+        int mid = (low + high)/2;
+        int max1 = max(arr,low,mid);
+        int max2 = max(arr,mid+1,high);
+        return Math.max(max1, max2);
     }
     static void input(int []arr, int n){
         Random ran = new Random();

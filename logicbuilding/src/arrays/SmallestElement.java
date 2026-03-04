@@ -13,7 +13,7 @@ public class SmallestElement {
         for (int ele : arr)
             System.out.print(ele+",");
         System.out.println();
-        System.out.println("Minimum Element: "+getSmallest(arr,n));
+        System.out.println("Minimum Element: "+min(arr,0,arr.length-1));
         System.out.println("Second Minimum Element: "+getSecondSmallest(arr,n));
     }
     static int getSmallest(int []arr, int n){
@@ -34,6 +34,14 @@ public class SmallestElement {
                 secondMin = arr[i];
         }
         return secondMin;
+    }
+    static int min(int []arr, int low, int high){
+        if (low == high)
+            return arr[low];
+        int mid  = (low+high) / 2;
+        int min1 = min(arr,low,mid);
+        int min2 = min(arr,mid+1,high);
+        return Math.min(min1,min2);
     }
     static void input(int []arr, int n){
         Random ran = new Random();
