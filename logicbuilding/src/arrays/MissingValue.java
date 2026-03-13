@@ -47,11 +47,11 @@ public class MissingValue {
     }
     static int usingXOR(int []arr){
         int n = arr.length+1;
-        int xor1 = 0, xor2 = 0;
+        int xor2 = 0, xor1 = 0;
         for (int element : arr)
-            xor1 ^= element;
+            xor2 ^= element;
         for (int i = 1; i<=n; i++)
-            xor2 ^= i;
+            xor1 ^= i;
         return xor1 ^ xor2;
     }
 }
