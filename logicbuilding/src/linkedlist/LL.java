@@ -3,7 +3,9 @@ package linkedlist;
 public class LL {
     private Node head;
     private Node tail;
+    private int size;
     public LL(){
+        size = 0;
     }
     private class Node{
         private int value;
@@ -23,6 +25,7 @@ public class LL {
         head = newNode;
         if(tail == null)
             tail = head;
+        size++;
     }
     public void insertLast(int val){
         if(tail == null){
@@ -32,14 +35,84 @@ public class LL {
         Node node = new Node(val);
         tail.next = node;
         tail = node;
+        size++;
     }
+    public void insertAtIndex(int val , int index) throws IndexOutOfBoundsException{
+        if (index > size) throw new IndexOutOfBoundsException("Invalid index");
+        if(index == 0){
+            insertFirst(val);
+            return;
+        }
+        if(index == size){
+            insertLast(val);
+            return;
+        }
+
+        Node temp  = head;
+        for (int i = 1; i<index; i++){
+            temp = temp.next;
+        }
+        Node node = new Node(val,temp.next);
+        temp.next  = node;
+        size++;
+    }
+    public int deleteFirst() {
+        int val = head.value;
+        head = head.next;
+        if (head == null)
+            tail = null;
+        size--;
+        return val;
+    }
+    public int deleteLast(){
+        if (size <= 1){
+            return deleteFirst();
+        }
+        Node node = get(size-2);
+        int val = tail.value;
+        tail = node;
+        tail.next = null;
+        size--;
+        return val;
+    }
+    public int delete(int index){
+        if (index == 0){
+            return deleteFirst();
+        }
+        if (index == size-1)
+            return deleteLast();
+        Node prev = get(index - 1);
+        int val = prev.next.value;
+        prev.next = prev.next.next;
+        return val;
+    }
+
     public void display(){
         Node currentHead = head;
         while(currentHead != null){
-            System.out.print(currentHead.value+"->");
+            System.out.print(currentHead.value+" -> ");
             currentHead = currentHead.next;
             if(currentHead == null)
-                System.out.print("Null");
+                System.out.println("Null");
         }
+    }
+    public int getSize(){
+        return size;
+    }
+    private Node get(int index){
+        Node node = head;
+        for (int i = 0; i<index; i++){
+            node = node.next;
+        }
+        return node;
+    }
+    public Boolean find(int val){
+        Node current = head;
+        while (current != null){
+            if (current.value == val)
+                return true;
+            current = current.next;
+        }
+        return false;
     }
 }
