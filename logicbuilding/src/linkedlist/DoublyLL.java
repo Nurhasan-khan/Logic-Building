@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.NoSuchElementException;
+
 public class DoublyLL {
    private Node head;
    private Node tail;
@@ -66,8 +68,46 @@ public class DoublyLL {
         node.prev = temp;
         size++;
     }
+    public int deleteFirst() throws NoSuchElementException{
+        if (head == null) throw new NoSuchElementException("List is Empty!!!");
+        int data = head.data;
+        head = head.next;
+        if (head != null)
+            head.prev = null;
+        else
+            tail = null;
+        size--;
+        return data;
+    }
+    public int deleteLast() throws NoSuchElementException{
+        if (tail == null) throw new NoSuchElementException("List is Empty!!!");
+        if (head == tail) return deleteFirst();
+        int data = tail.data;
+        tail = tail.prev;
+        tail.next = null;
+        size--;
+        return data;
+    }
+    public int delete(int index) throws IndexOutOfBoundsException{
+        if(index < 0 || index > size-1) throw new IndexOutOfBoundsException("Invalid Index value!!!");
+        if(index == 0) return deleteFirst();
+        if (index == size-1) return deleteLast();
+        Node prevNode = getPrev(index);
+        int data = prevNode.next.data;
+        prevNode.next = prevNode.next.next;
+        prevNode.next.prev = prevNode;
+        size--;
+        return data;
+    }
     public int getSize(){
         return size;
+    }
+    private Node getPrev(int index){
+        Node node = head;
+        for (int i = 1; i<index; i++){
+            node = node.next;
+        }
+        return node;
     }
     public void display(){
         Node temp = head;
